@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const teachersRouter = require('./teachers/router')
+const classesRouter = require('./classes/router')
 const authRouter = require('./authentication/router')
 const tokenMiddleware = require('./authentication/middleware').tokenMiddleware
 const requireTeacher = require('./authentication/middleware').requireTeacher
@@ -13,6 +14,7 @@ const app = express()
   .use(bodyParser.json())
   .use(tokenMiddleware)
   .use(teachersRouter)
+  .use(classesRouter)
   .use(authRouter)
 
 app.use((req, res, next) => {
